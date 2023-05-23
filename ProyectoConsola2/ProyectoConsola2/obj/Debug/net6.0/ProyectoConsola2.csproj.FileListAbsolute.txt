@@ -1,0 +1,15 @@
+F:\CursoCsharp\ProyectoConsola2\ProyectoConsola2\bin\Debug\net6.0\ProyectoConsola2.exe
+F:\CursoCsharp\ProyectoConsola2\ProyectoConsola2\bin\Debug\net6.0\ProyectoConsola2.deps.json
+F:\CursoCsharp\ProyectoConsola2\ProyectoConsola2\bin\Debug\net6.0\ProyectoConsola2.runtimeconfig.json
+F:\CursoCsharp\ProyectoConsola2\ProyectoConsola2\bin\Debug\net6.0\ProyectoConsola2.dll
+F:\CursoCsharp\ProyectoConsola2\ProyectoConsola2\bin\Debug\net6.0\ProyectoConsola2.pdb
+F:\CursoCsharp\ProyectoConsola2\ProyectoConsola2\obj\Debug\net6.0\ProyectoConsola2.csproj.AssemblyReference.cache
+F:\CursoCsharp\ProyectoConsola2\ProyectoConsola2\obj\Debug\net6.0\ProyectoConsola2.GeneratedMSBuildEditorConfig.editorconfig
+F:\CursoCsharp\ProyectoConsola2\ProyectoConsola2\obj\Debug\net6.0\ProyectoConsola2.AssemblyInfoInputs.cache
+F:\CursoCsharp\ProyectoConsola2\ProyectoConsola2\obj\Debug\net6.0\ProyectoConsola2.AssemblyInfo.cs
+F:\CursoCsharp\ProyectoConsola2\ProyectoConsola2\obj\Debug\net6.0\ProyectoConsola2.csproj.CoreCompileInputs.cache
+F:\CursoCsharp\ProyectoConsola2\ProyectoConsola2\obj\Debug\net6.0\ProyectoConsola2.dll
+F:\CursoCsharp\ProyectoConsola2\ProyectoConsola2\obj\Debug\net6.0\refint\ProyectoConsola2.dll
+F:\CursoCsharp\ProyectoConsola2\ProyectoConsola2\obj\Debug\net6.0\ProyectoConsola2.pdb
+F:\CursoCsharp\ProyectoConsola2\ProyectoConsola2\obj\Debug\net6.0\ProyectoConsola2.genruntimeconfig.cache
+F:\CursoCsharp\ProyectoConsola2\ProyectoConsola2\obj\Debug\net6.0\ref\ProyectoConsola2.dll
