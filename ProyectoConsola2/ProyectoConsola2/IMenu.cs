@@ -9,6 +9,7 @@ namespace ProyectoConsola2
     internal interface IMenu
     {
         void golosinas();
+        void frutas();
         void ventas();
         double solicitarPago();
 

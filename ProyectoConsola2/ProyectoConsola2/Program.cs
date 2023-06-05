@@ -5,8 +5,8 @@
         static void Main()
         {
             // Ejecuta nuevo progama
-            new Program().golosinas();
-
+            // new Program().golosinas();
+            new Program().frutas();
         }
     }
 }

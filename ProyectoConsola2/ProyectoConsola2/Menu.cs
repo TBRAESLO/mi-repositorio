@@ -8,10 +8,100 @@ namespace ProyectoConsola2
 {
     public class Menu : IMenu
     {
-        Almacen almacen = new Golosinas();
+        string tipoProducto;
+        Golosinas pGolosinas = new Golosinas();
+        Frutas pFrutas = new Frutas();
+
+        public void frutas()
+        {
+            tipoProducto = "frutas";
+            var des = "";
+            var valor = false;
+
+            do
+            {
+                Console.Clear();
+                Console.WriteLine("Venta de Frutas");
+                if (pFrutas.getProducto("").Count.Equals(0))
+                {
+                    Console.WriteLine("No hay golosinas");
+                    Console.WriteLine("Desea agregar frutas? presiones las teclas s/n");
+                    des = Console.ReadLine();
+                    if (des.Equals("s"))
+                    {
+                        Console.WriteLine("Cuantas frutas va a agregar?");
+                        int cant = Convert.ToInt16(Console.ReadLine());
+
+                        for(int i = 0; i < cant; i++)
+                        {
+                            Console.WriteLine("Nueva Fruta");
+                            Console.WriteLine("Ingrese ID: ");
+                            var id = Console.ReadLine();
+                            Console.WriteLine("Ingrese NOmbre: "); 
+                            var nombre = Console.ReadLine();
+                            Console.WriteLine("Ingrese Precio: "); 
+                            var precio = Convert.ToDouble(Console.ReadLine());
+
+                            pFrutas.addProducto(new Producto { 
+                            ID = id,
+                            Nombre = nombre,
+                            Precio = precio
+                            });
+                        }
+
+                        Console.WriteLine("Desea ir al inicio? presione s/n");
+                        des = Console.ReadLine();
+                        if (des.Equals("s")) 
+                        {
+                            valor = true;
+                        }
+                        else
+                        {
+                            valor = false;
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("Desea ir al inicio? presione s/n");
+                        des = Console.ReadLine();
+                        if (des.Equals(""))
+                        {
+                            Console.Clear();
+                            Console.WriteLine("Venta de Frutas");
+                        }
+                        else
+                        {
+                            valor = false;
+                        }
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Lista de Frutas");
+                    foreach(var item in pFrutas.getProducto(""))
+                    {
+                        Console.WriteLine($"Codigo: {item.ID}  Nombre: {item.Nombre}  Precio: {item.Precio.ToString()}");
+                    }
+
+                    Console.WriteLine("Desea realizar venta de frutas? Presione s/n");
+                    des = Console.ReadLine();
+
+                    if (des.Equals("s"))
+                    {
+                        ventas();
+                    }
+                    else
+                    {
+                        valor = false;
+                    }
+
+                }
+            } while (valor);
+        }
 
         public void golosinas()
         {
+            tipoProducto = "golosinas";
             var des = "";
             var valor = false;
 
@@ -19,7 +109,7 @@ namespace ProyectoConsola2
             {
                 Console.Clear();
                 Console.WriteLine("Venta de Golosinas");
-                if (almacen.getProducto().Count.Equals(0))
+                if (pGolosinas.getProducto("").Count.Equals(0))
                 {
                     Console.WriteLine("No hay golosinas.");
                     Console.WriteLine("Desea agregar golosinas? presione las teclas s/n: ");
@@ -40,7 +130,7 @@ namespace ProyectoConsola2
                             Console.WriteLine("Ingrese el precio");
                             var precio = Convert.ToDouble(Console.ReadLine());
 
-                            almacen.addProducto(new Producto
+                            pGolosinas.addProducto(new Producto
                             {
                                 ID = id,
                                 Nombre = nombre,
@@ -79,7 +169,7 @@ namespace ProyectoConsola2
                 else
                 {
                     Console.WriteLine("Lista de golosinas");
-                    foreach (var item in almacen.getProducto(""))
+                    foreach (var item in pGolosinas.getProducto(""))
                     {
                         Console.WriteLine($"Codigo {item.ID} Golosina {item.Nombre} Precio {item.Precio}");
                     }
@@ -128,24 +218,72 @@ namespace ProyectoConsola2
         {
             double total = 0;
             string des = "";
+            string producto = "";
 
-            do
+            if (tipoProducto.Equals("golosinas"))
             {
-                Console.WriteLine("Ingrese el producto");
-                string producto = Console.ReadLine();
-                var productos = almacen.getProducto(producto);
-
-                while (productos.Count.Equals(0))
+                
+                do
                 {
-                    Console.WriteLine("Golosina no disponible, por favor seleccione otro.");
+                    Console.WriteLine("Ingrese el producto");
                     producto = Console.ReadLine();
-                }
+                    var productos = pGolosinas.getProducto(producto);
 
-                Console.WriteLine($"Su monto a pagar es: {productos[0].Precio} $Dolar.");
-                double pago = solicitarPago();
+                    while (productos.Count.Equals(0))
+                    {
+                        Console.WriteLine("Golosina no disponible, por favor seleccione otro.");
+                        producto = Console.ReadLine();
+                        productos = pGolosinas.getProducto(producto);
+                    }
+
+                    Console.WriteLine($"Su monto a pagar es: {productos[0].Precio} $Dolar.");
+                    double pago = solicitarPago();
+                    while (pago < productos[0].Precio)
+                    {
+                        Console.WriteLine("Faltan " + (productos[0].Precio - pago).ToString() + " $ Dolar");
+                        pago = solicitarPago();
+                    }
+
+                    Console.WriteLine("Su cambio: " + (pago - productos[0].Precio).ToString());
+                    total += productos[0].Precio;
+                    Console.WriteLine("Su pago fue de: " + total.ToString() + " $ Dolar.");
+                    Console.WriteLine("¿ Desea realizar otra compra? s/n");
+                    des = Console.ReadLine();
+
+                } while (des.Equals("s")) ;
+            }
+            else if(tipoProducto.Equals("frutas")){
+                do
+                {
+                    Console.WriteLine("Ingrese el producto");
+                    producto = Console.ReadLine();
+                    var productos = pFrutas.getProducto(producto);
+
+                    while (productos.Count.Equals(0))
+                    {
+                        Console.WriteLine("Fruta no disponible, por favor seleccione otro. ");
+                        producto = Console.ReadLine();
+                        productos = pFrutas.getProducto("");
+                    }
+
+                    Console.WriteLine($"Su monto a pagar es: {productos[0].Precio} $Dolar.");
+                    double pago = solicitarPago();
+                    while (pago < productos[0].Precio)
+                    {
+                        Console.WriteLine("Faltan " + (productos[0].Precio - pago).ToString() + " $Dolar");
+                        pago = solicitarPago();
+                    }
+
+                    Console.WriteLine("Su cambio: " + (pago - productos[0].Precio).ToString());
+                    total += productos[0].Precio;
+                    Console.WriteLine("Su pago fue de: " + total.ToString() + " $Dolar.");
+                    Console.WriteLine("¿ Desea realizar otra venta ? s/n");
+                    des = Console.ReadLine();
+
+                } while (des.Equals("s"));
+            }
 
 
-            } while (true);
         }
     }
 }
